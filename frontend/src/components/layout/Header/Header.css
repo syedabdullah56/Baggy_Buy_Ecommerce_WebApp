@@ -1,0 +1,120 @@
+/* Overlay styles */
+
+.navbar{
+  position: relative;
+  z-index: 999;
+}
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color:black;
+    overflow-x: hidden;
+    transition: 0.5s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .overlay.open {
+    width: 100%;
+  }
+  
+  .overlay-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:0 1.25vw;
+    transition: all 0.15s ease-in-out;
+  
+  }
+
+
+
+
+
+  .navIcons{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    left:3vw;
+  }
+
+
+  @media (max-width:1310px) {
+    .overlay-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      top:10vh;
+      gap:1.25vw 0;
+
+    
+    }
+    .navIcons{
+      position:relative;
+      top:2vh;
+      gap:2vh;
+     
+    }
+  }
+
+  .overlay-content a:hover{
+    transform: scale(1.1);
+  }
+
+  .overlay-content a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .overlay-content a:hover {
+    color: #f1f1f1;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+    color: white; 
+  }
+  
+  .navbar-toggle {
+    font-size: 30px;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 2;
+  }
+
+
+.speedDial{
+    position: fixed;
+    right: 3vmax;
+    top: 3vmax;
+}
+
+.speedDialIcon{
+    width:56px;
+    height:56px;
+    border-radius: 100%;
+}
+
+  
+
+
+  

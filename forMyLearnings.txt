@@ -1,0 +1,51 @@
+Node js packages information
+
+bcryptjs==>this package is used for password hashing and encrypting so that you can convert user passwords into encrypted form so that it can saved from hackers
+
+body-parser==>it is used to get incoming requests bodies and make it available in req.body
+
+cookie-parser==>it is a middleware that helps in getting cookie from the request and make it available in req.cookies
+cookie==>it is a piece of data send by the website to the browser to learn about the user preferences and login status
+
+dotenv==>it is a nodejs module that loads environment variables from a .env file and make it available in process.env
+
+express==>we used express because it makes very simple for us to make web applications and adding all functionalities in it
+
+jsonwebtoken==>it is used to manage,create and authenticating tokens
+token==>it is a thing that allows the user to accesss the resources of a web applications
+
+mongoose==>it is used to access database(mongodb),and validate data before storing it to the database
+
+nodemailer==>it is a nodejs module that helps us to send email to the user through the server
+
+nodemon==>it is a nodejs utility that helps in fasting our development process by restarting the server anytime when the changes are made
+
+validator==>it is used to validate data that is given by the user and ensures that it does not harm our applications
+
+
+ABOUT APP.js
+app.js is the starting point of our applications it contains all the middleware that runs the backend of our applications
+
+app.use(express.json())==>this middleware is used for accessing body of the request and make it available in req.body
+
+next()==>this is used to give control to the next middleware function
+
+{useNewUrlParser:true, useUnifiedTopology:true}==>these are options used in connecting mongodb database in order to get the latest version of mongodb connection string and to make compatible connection with the database
+
+
+Connect the DataBase and Start server
+
+Make Product Model
+
+ratings==>they are numbers based
+reviews==>they are text based
+
+Axios==>
+It is a tool used to send and recieve data from a server.
+It makes easy to talk to servers and get or send information.
+
+
+
+
+
+
