@@ -1,8 +1,8 @@
 import React, { Fragment, useRef, useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
 import "./LoginSignUp.css";
 import Loader from '../layout/Loader/Loader';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import FaceIcon from '@mui/icons-material/Face';
@@ -14,6 +14,7 @@ const LoginSignUp = () => {
     const dispatch = useDispatch();  
     const alert = useAlert();
     const navigate = useNavigate();
+    const location=useLocation();
     
     const { loading, error, isAuthenticated } = useSelector((state) => state.user);
     
@@ -66,6 +67,8 @@ const LoginSignUp = () => {
         }
     }
 
+    const redirect = location.search ? `/${location.search.split('=')[1]}` : '/account';
+
     useEffect(() => {
         if (error) {
             alert.error(error);
@@ -73,9 +76,9 @@ const LoginSignUp = () => {
         }
 
         if (isAuthenticated) {
-            navigate("/account");
+            navigate(redirect);
         }
-    }, [dispatch, error, alert, navigate, isAuthenticated]);
+    }, [dispatch, error, alert, navigate, isAuthenticated,redirect]);
 
     const switchTabs = (e, tab) => {
         if (tab === "login") {
@@ -116,7 +119,7 @@ const LoginSignUp = () => {
                                     onChange={(e) => setLoginEmail(e.target.value)} /> 
                                 </div>
                                 <div className="loginPassword">
-                                    <LockOpenIcon />
+                                    <LockOpenIcon /> 
                                     <input type="password" placeholder="Password" required 
                                     value={loginPassword} 
                                     onChange={(e) => setLoginPassword(e.target.value)} />

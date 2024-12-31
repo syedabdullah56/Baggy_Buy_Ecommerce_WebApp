@@ -15,7 +15,7 @@ const CartItemCard = ({item,deleteCartItems}) => {
     </div>
 
     </div>
-  )
+  ) 
 }
 
 export default CartItemCard

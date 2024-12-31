@@ -19,7 +19,7 @@
 .emptyCart >a{
     background-color:black;
     color:white;
-    border-radius: 30px;
+    border-radius: 30px; 
     padding: 1vmax 3vmax;
     cursor: pointer;
     font:400 1.5vmax "Roboto";

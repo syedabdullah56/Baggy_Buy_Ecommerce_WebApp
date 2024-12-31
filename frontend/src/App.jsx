@@ -25,7 +25,7 @@ function App() {
 
   //The forgot password and reset password are not done properly they will be done after the project will be deployed
   useEffect(() => {
-    store.dispatch(loadUser());
+    store.dispatch(loadUser());     
   }, []);
 
   return (
