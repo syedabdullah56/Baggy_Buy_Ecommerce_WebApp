@@ -62,7 +62,7 @@ const LoginSignUp = () => {
                 }
             }
             reader.readAsDataURL(e.target.files[0]);
-        } else {
+        } else { 
             setUser({ ...user, [e.target.name]: e.target.value });
         }
     }

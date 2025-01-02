@@ -73,7 +73,7 @@ function App() {
 
 function FooterConditionally() {
   const location = useLocation();
-  return location.pathname === "/" ? <Footer /> : null;
+  return location.pathname === "/" ? <Footer /> : <Footer />;
 }
 
 export default App;
