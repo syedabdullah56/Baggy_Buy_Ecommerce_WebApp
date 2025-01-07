@@ -11,8 +11,11 @@ import TransferWithinAStationRounded from '@mui/icons-material/TransferWithinASt
 import PhoneIcon from '@material-ui/icons/Phone';
 import { Country, State, City } from 'country-state-city'; 
 import { useAlert } from 'react-alert';
+import CheckoutSteps from '../Cart/CheckoutSteps.jsx';
 
 const Shipping = () => {
+
+
   const dispatch = useDispatch();
   const alert = useAlert();
   const { shippingInfo } = useSelector((state) => state.cart);
@@ -34,6 +37,11 @@ const Shipping = () => {
 
   return (
     <Fragment>
+        <MetaData title="Shipping Details"/>
+
+        <CheckoutSteps activeStep={0} />
+
+
       <div className="shippingContainer">
         <div className="shippingBox">
           <h2 className="shippingHeading">Shipping Details</h2>
