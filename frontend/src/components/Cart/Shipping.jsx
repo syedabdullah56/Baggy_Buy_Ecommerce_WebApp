@@ -12,11 +12,13 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import { Country, State, City } from 'country-state-city'; 
 import { useAlert } from 'react-alert';
 import CheckoutSteps from '../Cart/CheckoutSteps.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const Shipping = () => {
 
 
   const dispatch = useDispatch();
+  const navigate=useNavigate();
   const alert = useAlert();
   const { shippingInfo } = useSelector((state) => state.cart);
 
@@ -29,10 +31,29 @@ const Shipping = () => {
 
   const shippingSubmit = (e) => {
     e.preventDefault();
+
+    // Validations
+    if (address.length < 10) {
+      alert.error('Address must be at least 10 characters long.');
+      return;
+    }
+
+    if (!/^\d{5}$/.test(pinCode)) {
+      alert.error('Pin Code must be exactly 5 digits.');
+      return;
+    }
+
+    if (!/^03\d{9}$/.test(phoneNo)) {
+      alert.error('Phone Number must be 11 digits and start with "03".');
+      return;
+    }
+
     dispatch(
       saveShippingInfo({ address, city, province, country, pinCode, phoneNo })
     );
     alert.success('Shipping Info Saved!');
+
+    navigate("/order/confirm")
   };
 
   return (
@@ -65,7 +86,7 @@ const Shipping = () => {
               <PinDropIcon />
               <input
                 type="number"
-                placeholder="Pin Code"
+                placeholder="Postal Code"
                 required
                 value={pinCode}
                 onChange={(e) => setPinCode(e.target.value)}
