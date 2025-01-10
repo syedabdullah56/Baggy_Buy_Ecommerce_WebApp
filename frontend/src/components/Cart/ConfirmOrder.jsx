@@ -21,6 +21,19 @@ const ConfirmOrder = () => {
     const tax=subtotal*0;   ///Can be changed to * by percentage of tax in future
     const totalPrice=subtotal+shippingCharges+tax;
 
+    const proceedToPayment=()=>{ 
+        const data={
+            subtotal,
+            shippingCharges,
+            tax,
+            totalPrice,
+            shippingInfo
+        }
+
+        sessionStorage.setItem('orderInfo',JSON.stringify(data));
+        navigate('/process/payment');
+    }
+
   return (
     <Fragment>
         <MetaData title={'Confirm Order'}/>
@@ -96,7 +109,7 @@ const ConfirmOrder = () => {
                         <span>Rs.{totalPrice}</span>
                     </div>
 
-                   <button>Proceed To Payment</button>
+                   <button onClick={proceedToPayment}>Proceed To Payment</button>
 
 
                 </div>
