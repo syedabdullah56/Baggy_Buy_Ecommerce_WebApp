@@ -40,10 +40,12 @@ const Cart = () => {
   return (
     <Fragment>
         {cartItems.length===0 ? 
+        <div className='emptyCartContainer'>
          <div className="emptyCart">
             <RemoveShoppingCartIcon style={{fontSize:'100px'}}/>
             <Typography>Your Cart is Empty</Typography>
             <Link to="/products">View Products</Link>
+         </div>
          </div>
 
          : (

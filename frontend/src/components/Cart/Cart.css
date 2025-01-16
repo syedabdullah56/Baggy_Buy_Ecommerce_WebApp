@@ -1,7 +1,9 @@
-.emptyCart{
-    position: absolute;
-    top:35vh;
-    left:38vw;
+.emptyCartContainer{
+    height: 100vh;
+    width:100vw;
+     display: flex;
+     align-items: center;
+     justify-content: center;
 }
 
 .emptyCart >svg{

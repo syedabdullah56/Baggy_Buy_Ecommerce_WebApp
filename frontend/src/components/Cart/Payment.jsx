@@ -13,7 +13,6 @@ import "./Payment.css"
 
 
 const Payment = () => {
-
     const orderInfo=JSON.parse(sessionStorage.getItem('orderInfo'))
     const payBtn = useRef(null);
 
@@ -26,19 +25,19 @@ const Payment = () => {
         <div className="paymentContainer">
              <form  className="paymentForm"  onSubmit={(e)=>submitHandler(e)}>
                 <Typography>Card Info</Typography>
-                <div>
-                    <CreditCardIcon/>
+                <div>       
+                    <CreditCardIcon/>         
                     <CardNumberElement className='paymentInput'/>
                 </div>
 
                 <div>
                     <EventIcon/>
-                    <CardExpiryElement className='paymentInput'/>
+                    <CardExpiryElement className='paymentInput' />
                 </div>
 
                 <div>
                     <VpnKeyIcon/>
-                    <CardCvcElement className='paymentInput'/>
+                    <CardCvcElement className='paymentInput' />
                 </div>
 
                 <input type="submit" value={`Pay - ${orderInfo && orderInfo.totalPrice}`} 
@@ -48,6 +47,7 @@ const Payment = () => {
 
    
              </form>
+             jjj
         </div>
      </Fragment>
   )

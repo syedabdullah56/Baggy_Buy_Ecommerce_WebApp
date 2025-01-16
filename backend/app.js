@@ -8,8 +8,10 @@ const app=express();
 
 // Config 
 dotenv.config({path:"backend/config/config.env"})
+   
+  
 
-
+// Middleware  
 app.use(express.json())  //this middleware is used to parse the bady of incoming request and make it available in req.body
 app.use(cookieParser())  //this middleware is used to parse the cookie from an incoming request and make it available in req.cookies
 app.use(bodyParser.urlencoded({extended:true}))  //this middleware is used to parse the body of incoming request and make it available in req.body
