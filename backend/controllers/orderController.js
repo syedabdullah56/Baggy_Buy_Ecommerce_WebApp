@@ -11,7 +11,7 @@ exports.createNewOrder=catchAsyncErrors(async(req,res,next)=>{
         shippingInfo,
         orderItems,
         paymentInfo,
-        itemsPrice,
+        itemsPrice, 
         taxPrice,
         shippingPrice,
         totalPrice,
