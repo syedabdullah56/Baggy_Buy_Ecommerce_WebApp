@@ -6,4 +6,4 @@ mongoose.connect(process.env.DB_URI,{useNewUrlParser:true,useUnifiedTopology:tru
 })
 }
 
-module.exports=connectDatabase;  
+module.exports=connectDatabase;   

@@ -38,9 +38,11 @@ const Payment = () => {
         taxPrice:orderInfo.tax,
         shippingPrice:orderInfo.shippingCharges,
         totalPrice:orderInfo.totalPrice
+        
     }
 
     const submitHandler = async (e) => {
+
         e.preventDefault();
     
         payBtn.current.disabled = true;
