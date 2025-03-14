@@ -22,12 +22,12 @@ const Shipping = () => {
   const alert = useAlert();
   const { shippingInfo } = useSelector((state) => state.cart);
 
-  const [address, setAddress] = useState(shippingInfo.address || '');
-  const [city, setCity] = useState(shippingInfo.city || '');
-  const [province, setProvince] = useState(shippingInfo.province || '');
-  const [country, setCountry] = useState(shippingInfo.country || '');
-  const [pinCode, setPinCode] = useState(shippingInfo.pinCode || '');
-  const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo || '');
+  const [address, setAddress] = useState(shippingInfo.address);
+  const [country, setCountry] = useState(shippingInfo.country);
+  const [state, setState] = useState(shippingInfo.state);
+  const [city, setCity] = useState(shippingInfo.city);
+  const [pinCode, setPinCode] = useState(shippingInfo.pinCode);
+  const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
 
   const shippingSubmit = (e) => {
     e.preventDefault();
@@ -49,7 +49,7 @@ const Shipping = () => {
     }
 
     dispatch(
-      saveShippingInfo({ address, city, province, country, pinCode, phoneNo })
+      saveShippingInfo({ address, city, state, country, pinCode, phoneNo })
     );
     alert.success('Shipping Info Saved!');
 
@@ -126,8 +126,8 @@ const Shipping = () => {
                 <TransferWithinAStationRounded />
                 <select
                   required
-                  value={province}
-                  onChange={(e) => setProvince(e.target.value)}
+                  value={state}
+                  onChange={(e) => setState(e.target.value)}
                 >
                   <option value="">Province</option>
                   {State.getStatesOfCountry(country).map((item) => (
@@ -139,7 +139,7 @@ const Shipping = () => {
               </div>
             )}
 
-            {province && (
+            {state && (
               <div>
                 <LocationCityIcon />
                 <select
@@ -148,7 +148,7 @@ const Shipping = () => {
                   onChange={(e) => setCity(e.target.value)}
                 >
                   <option value="">City</option>
-                  {City.getCitiesOfState(country, province).map((item) => (
+                  {City.getCitiesOfState(country, state).map((item) => (
                     <option key={item.name} value={item.name}>
                       {item.name}
                     </option>
