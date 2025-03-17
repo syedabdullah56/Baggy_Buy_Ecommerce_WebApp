@@ -38,7 +38,7 @@ export const myOrdersReducer=(state={orders:[]},action)=>{
         case MY_ORDER_SUCCESS:
             return{
                 loading:false, 
-                orders:action.payload
+                orders:action.payload 
             }
         case MY_ORDER_FAIL:
             return{
@@ -48,7 +48,7 @@ export const myOrdersReducer=(state={orders:[]},action)=>{
         case CLEAR_ERRORS:
             return{
                 ...state,
-                error:null
+                error:null  
             }
         default:
             return state;

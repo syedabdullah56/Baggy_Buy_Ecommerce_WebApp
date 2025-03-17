@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
     forgotPassword:forgotPasswordReducer,
     cart:cartReducer,
     newOrder:newOrderReducer,
-    myOrder:myOrdersReducer,
+    myOrders:myOrdersReducer,
 });
 const initialState ={
     cart:{

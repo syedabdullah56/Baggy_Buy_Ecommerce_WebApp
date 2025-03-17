@@ -6,4 +6,4 @@ export const MY_ORDER_REQUEST="MY_ORDER_REQUEST";
 export const MY_ORDER_SUCCESS="MY_ORDER_SUCCESS";
 export const MY_ORDER_FAIL="MY_ORDER_FAIL";
 
-export const CLEAR_ERRORS="CLEAR_ERRORS"; 
+export const CLEAR_ERRORS="CLEAR_ERRORS";  

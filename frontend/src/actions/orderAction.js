@@ -26,7 +26,7 @@ export const myOrders=()=>async(dispatch,getState)=>{
         dispatch({type:MY_ORDER_REQUEST});
         const config={
             headers:{"Content-Type":"application/json"}
-        } 
+        }  
         const {data}=await axios.get("/api/v1/orders/me");
         dispatch({type:MY_ORDER_SUCCESS,payload:data.orders});
     }catch(error){
