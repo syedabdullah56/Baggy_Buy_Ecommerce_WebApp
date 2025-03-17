@@ -5,7 +5,7 @@ const router=express.Router();
 
 // Create New Order
 router.route("/order/new").post(isAuthenticatedUser,createNewOrder)
-
+ 
 // Get Single Order Details
 router.route("/order/:id").get(isAuthenticatedUser,getSingleOrderDetails);
  

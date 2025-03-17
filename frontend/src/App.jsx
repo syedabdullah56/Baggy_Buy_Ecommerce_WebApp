@@ -23,6 +23,7 @@ import Shipping from './components/Cart/Shipping.jsx';
 import ConfirmOrder from './components/Cart/ConfirmOrder.jsx'
 import OrderSuccess from './components/Cart/OrderSuccess.jsx'
 import MyOrders from './components/Order/MyOrders.jsx'
+import OrderDetails from './components/Order/OrderDetails.jsx'
 import Payment from './components/Cart/Payment.jsx'
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
@@ -76,6 +77,7 @@ function App() {
               <Route path="/process/payment" element={<Payment />} />
               <Route path="/success" element={<OrderSuccess />} />
               <Route path="/orders" element={<MyOrders/>} />
+              <Route path="/order/:id" element={<OrderDetails/>} />
             </Route>
           </Routes>
         </Elements>
