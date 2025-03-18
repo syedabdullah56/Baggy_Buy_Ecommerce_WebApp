@@ -1,7 +1,7 @@
 import './App.css';
 import Header from "./components/layout/Header/Header.jsx";
 import Footer from "./components/layout/Footer/Footer.jsx";
-import { BrowserRouter as Router, Routes, Route, useLocation,Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Home from "./components/Home/Home.jsx";
 import ProductDetails from "./components/Product/ProductDetails.jsx";
 import Products from './components/Product/Products.jsx';
@@ -76,12 +76,9 @@ function App() {
               <Route path="/process/payment" element={<Payment />} />
               <Route path="/success" element={<OrderSuccess />} />
               <Route path="/orders" element={<MyOrders/>} />
-
-               {/* Wrapping the ConfirmOrder component with Switch to handle the nested routes */}
-              <Switch>
               <Route path="/order/confirm" element={<ConfirmOrder />} />
               <Route path="/order/:id" element={<OrderDetails/>} />
-              </Switch>
+        
 
 
             </Route>
