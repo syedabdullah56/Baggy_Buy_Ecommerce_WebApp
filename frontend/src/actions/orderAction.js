@@ -45,15 +45,15 @@ export const getOrderDetails=(id)=>async(dispatch)=>{
         const config={ 
             headers:{"Content-Type":"application/json"}
         }  
-        const {data}=await axios.get(`/api/v1/order/${id}`); 
-        dispatch({type:ORDER_DETAILS_SUCCESS,payload:data.orders});
+        const {data}=await axios.get(`/api/v1/order/${id}`);   
+        dispatch({type:ORDER_DETAILS_SUCCESS,payload:data.order});
     }catch(error){
         dispatch({
             type:ORDER_DETAILS_FAIL,
             payload:error.response.data.message
         })
     }
-}
+}  
 
 // Clearing Errors
 export const clearErrors=()=>async (dispatch)=>{

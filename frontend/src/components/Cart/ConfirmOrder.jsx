@@ -53,7 +53,7 @@ const ConfirmOrder = () => {
                             <p>Phone:</p>
                             <span>{shippingInfo.phoneNo}</span>
                         </div>
-                        <div>
+                        <div> 
                             <p>Address:</p>
                             <span>{address}</span>
                         </div>

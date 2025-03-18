@@ -64,7 +64,7 @@ const ProductDetails = () => {
       ) : (
         <Fragment>
          <MetaData title={`${product.name} -- BaggyBuy`}/>
-        <div className="ProductDetails">
+        <div className="ProductDetails"> 
           <div className='CAROUSEL'>
             <Carousel className='Carousel'>
               {product.images &&
@@ -100,7 +100,7 @@ const ProductDetails = () => {
                             <button onClick={increaseQuantity}>+</button>
                       </div>
                            
-                           <button onClick={addToCartHandler}>Add to Cart</button>
+                           <button disabled={product.Stock<1 ?true:false} onClick={addToCartHandler}>Add to Cart</button>
                     </div>
   
                     <p>Status:
