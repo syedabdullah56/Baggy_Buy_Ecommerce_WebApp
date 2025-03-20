@@ -14,7 +14,7 @@ export const newOrderReducer=(state={},action)=>{
             }
         case CREATE_ORDER_FAIL:
             return{
-                loading:true,     //To show the error message
+                loading:false,     //To show the error message
                 error:action.payload
             }   
         case CLEAR_ERRORS:
@@ -42,7 +42,7 @@ export const myOrdersReducer=(state={orders:[]},action)=>{
             }
         case MY_ORDER_FAIL:
             return{
-                loading:true,     //To show the error message
+                loading:false,     //To show the error message
                 error:action.payload
             }   
         case CLEAR_ERRORS:
@@ -68,7 +68,7 @@ export const orderDetailsReducer=(state={order:{}},action)=>{
             }
         case ORDER_DETAILS_FAIL:
             return{   
-                loading:true,     //To show the error message
+                loading:false,     //To show the error message
                 error:action.payload
             }   
         case CLEAR_ERRORS:

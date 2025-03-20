@@ -24,11 +24,13 @@ import ConfirmOrder from './components/Cart/ConfirmOrder.jsx'
 import OrderSuccess from './components/Cart/OrderSuccess.jsx'
 import MyOrders from './components/Order/MyOrders.jsx'
 import OrderDetails from './components/Order/OrderDetails.jsx'
+import Dashboard from './components/Admin/Dashboard.jsx'
+import ProductList from './components/Admin/ProductList.jsx'
 import Payment from './components/Cart/Payment.jsx'
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import axios from 'axios';
-
+import axios from 'axios';   
+   
 
 function App() {
   const dispatch = useDispatch();
@@ -78,6 +80,15 @@ function App() {
               <Route path="/orders" element={<MyOrders/>} />
               <Route path="/order/confirm" element={<ConfirmOrder />} />
               <Route path="/order/:id" element={<OrderDetails/>} />
+
+              <Route element={<ProtectedRoute isAdmin={true} />}>
+                   <Route path="/admin/dashboard" element={<Dashboard />} />
+               </Route>
+
+               <Route element={<ProtectedRoute isAdmin={true} />}>
+                   <Route path="/admin/products" element={<ProductList />} />
+               </Route>
+
         
 
 

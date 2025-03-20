@@ -5,7 +5,7 @@ import {
   ALL_PRODUCT_SUCCESS,
   PRODUCT_DETAILS_REQUEST,PRODUCT_DETAILS_SUCCESS,PRODUCT_DETAILS_FAIL,
   CLEAR_ERRORS,
-  NEW_REVIEW_REQUEST,NEW_REVIEW_SUCCESS,NEW_REVIEW_RESET,NEW_REVIEW_FAIL,
+  NEW_REVIEW_REQUEST,NEW_REVIEW_SUCCESS,NEW_REVIEW_RESET,NEW_REVIEW_FAIL,ADMIN_PRODUCT_REQUEST,ADMIN_PRODUCT_SUCCESS,ADMIN_PRODUCT_FAIL
 } from "../constants/productConstants.js";
 
 export const getProduct = (keyword="",currentPage=1,price=[0,50000],category,ratings=0) => async (dispatch) => {
@@ -31,6 +31,26 @@ export const getProduct = (keyword="",currentPage=1,price=[0,50000],category,rat
     });
   }   
 };
+
+// GET ALL PRODUCTS FOR ADMIN
+export const getAdminProducts = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: ADMIN_PRODUCT_REQUEST,
+    });
+    const { data } = await axios.get(`/api/v1/admin/products`);   
+    dispatch({
+      type: ADMIN_PRODUCT_SUCCESS,
+      payload: data.products,
+    });
+  } catch (error) {
+    const errorMessage = error.response ? error.response.data.message : error.message;
+    dispatch({
+      type: ADMIN_PRODUCT_FAIL,
+      payload: errorMessage,
+    });
+  }
+}
 
 
 export const getProductDetails = (id) => async (dispatch) => {
@@ -63,7 +83,7 @@ export const newReview = (reviewData) => async (dispatch) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
-      },
+      }, 
     }
 
     const { data } = await axios.put(`/api/v1/review`, reviewData,config);

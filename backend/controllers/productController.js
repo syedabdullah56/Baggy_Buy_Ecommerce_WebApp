@@ -38,6 +38,19 @@ exports.getAllProducts = catchAsynErrors(async (req, res,next) => {
         });
 });
 
+
+// Get All Products--Admin
+exports.getAdminProducts = catchAsynErrors(async (req, res,next) => {
+
+    const products=await Product.find();
+  
+    res.status(200).json({
+        success: true,
+        products
+    
+        });
+});
+
 // Update Product
 exports.updateProduct = catchAsynErrors(async (req, res, next) => {
     let product = await Product.findById(req.params.id);
@@ -85,7 +98,7 @@ exports.getProductDetails=catchAsynErrors(async (req,res,next)=>{
  //Create A New or Update The Review
  exports.createProductReview=catchAsynErrors(async(req,res,next)=>{
     const {rating,comment,productId}=req.body;
-    const review={
+    const review={ 
         user:req.user._id,
         name:req.user.name,
         rating:Number(rating),
