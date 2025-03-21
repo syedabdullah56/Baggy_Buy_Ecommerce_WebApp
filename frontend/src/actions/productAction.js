@@ -1,7 +1,7 @@
 import axios from "axios";
 import {
   ALL_PRODUCT_FAIL,
-  ALL_PRODUCT_REQUEST,
+  ALL_PRODUCT_REQUEST, 
   ALL_PRODUCT_SUCCESS,
   PRODUCT_DETAILS_REQUEST,PRODUCT_DETAILS_SUCCESS,PRODUCT_DETAILS_FAIL,
   CLEAR_ERRORS,
@@ -47,10 +47,16 @@ export const getAdminProducts = () => async (dispatch) => {
     const errorMessage = error.response ? error.response.data.message : error.message;
     dispatch({
       type: ADMIN_PRODUCT_FAIL,
-      payload: errorMessage,
+      payload: errorMessage, 
     });
-  }
+  }        
 }
+
+
+
+
+
+
 
 
 export const getProductDetails = (id) => async (dispatch) => {

@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { Typography } from '@mui/material';
 import MetaData from '../layout/MetaData';
 import { useAlert } from 'react-alert';
-import LaunchIcon from '@mui/icons-material/Launch';
+import LaunchIcon from '@mui/icons-material/Launch'; 
 
 const MyOrders = () => {
     const dispatch=useDispatch();
@@ -34,7 +34,7 @@ const MyOrders = () => {
         }}
     ];
 
-    const rows=[];
+    const rows=[]; 
 
     orders && orders.forEach(order=>{
         rows.push({

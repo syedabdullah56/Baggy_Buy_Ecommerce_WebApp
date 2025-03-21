@@ -18,18 +18,19 @@ import UpdateProfile from './components/User/UpdateProfile.jsx';
 import UpdatePassword from './components/User/UpdatePassword.jsx';
 import ForgotPassword from './components/User/ForgotPassword.jsx'
 import ResetPassword from './components/User/ResetPassword.jsx'
-import Cart from './components/Cart/Cart.jsx';
+import Cart from './components/Cart/Cart.jsx'; 
 import Shipping from './components/Cart/Shipping.jsx';
 import ConfirmOrder from './components/Cart/ConfirmOrder.jsx'
 import OrderSuccess from './components/Cart/OrderSuccess.jsx'
 import MyOrders from './components/Order/MyOrders.jsx'
 import OrderDetails from './components/Order/OrderDetails.jsx'
 import Dashboard from './components/Admin/Dashboard.jsx'
-import ProductList from './components/Admin/ProductList.jsx'
+import ProductsList from './components/Admin/ProductsList.jsx';
 import Payment from './components/Cart/Payment.jsx'
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';   
+
    
 
 function App() {
@@ -46,7 +47,7 @@ function App() {
 
   useEffect(() => {
     store.dispatch(loadUser());     
-    getStripeApiKey();
+    getStripeApiKey(); 
   }, []);
 
 
@@ -86,7 +87,7 @@ function App() {
                </Route>
 
                <Route element={<ProtectedRoute isAdmin={true} />}>
-                   <Route path="/admin/products" element={<ProductList />} />
+                   <Route path="/admin/products" element={<ProductsList />} />
                </Route>
 
         

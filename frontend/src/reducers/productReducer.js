@@ -2,10 +2,47 @@ import { ALL_PRODUCT_FAIL, ALL_PRODUCT_REQUEST, ALL_PRODUCT_SUCCESS, CLEAR_ERROR
 const initialState = {
     products: []
 }; 
+
+
+// Initial state for admin products
+const initialAdminState = {
+    loading: false,
+    products: [],
+    error: null,
+};
+
+// Admin Products Reducer
+export const adminProductsReducer = (state = initialAdminState, action) => {
+    switch (action.type) {
+        case ADMIN_PRODUCT_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            };
+        case ADMIN_PRODUCT_SUCCESS:
+            return {
+                loading: false,
+                products: action.payload.products,
+            };
+        case ADMIN_PRODUCT_FAIL:
+            return {
+                loading: false,
+                error: action.payload,
+            };
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null,
+            };
+        default:
+            return state;
+    }
+};
+
+
 export const productReducer = (state=initialState, action) => {
     switch (action.type) {
         case ALL_PRODUCT_REQUEST:
-        case ADMIN_PRODUCT_REQUEST:
             return {
                 loading: true,
                 products: [],  
@@ -18,13 +55,8 @@ export const productReducer = (state=initialState, action) => {
                 resultPerPage: action.payload.resultPerPage,
                 filteredProductsCount: action.payload.filteredProductsCount,
             };
-        case ADMIN_PRODUCT_SUCCESS:
-            return {
-                loading: false,
-                products: action.payload.products,
-                };
+    
         case ALL_PRODUCT_FAIL:
-        case ADMIN_PRODUCT_FAIL
             return {
                 loading: false,
                 error: action.payload,

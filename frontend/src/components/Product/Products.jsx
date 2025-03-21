@@ -23,7 +23,7 @@ const categories = [
 
 
 const Products = () => {      
-    const dispatch = useDispatch();
+    const dispatch = useDispatch(); 
 
     const alert=useAlert();
 
@@ -34,10 +34,10 @@ const Products = () => {
 
     const [price, setPrice] = useState([0,50000]);
     const [category, setCategory] = useState("")
-    const [ratings, setRatings] = useState(0)
+    const [ratings, setRatings] = useState(0) 
 
     const priceHandler = (event, newPrice) => {
-        setPrice(newPrice);
+        setPrice(newPrice);  
     };
 
     

@@ -12,11 +12,16 @@ import MetaData from '../layout/MetaData';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import Sidebar from './Sidebar.jsx';
-
-const ProductList = () => {
+   
+const ProductsList = () => {     
     const dispatch=useDispatch();
     const alert=useAlert();
-    const {error,products}=useSelector(state=>state.products)
+    const {error,products}=useSelector((state)=>state.adminProducts)
+
+       
+
+
+
 
     const columns=[
         {field:"id",headerName:"Product ID",minWidth:200,flex:0.5},
@@ -29,9 +34,10 @@ const ProductList = () => {
                     <Link to={`/admin/product/${params.row.id}`}><EditIcon /></Link>
                     <Button ><DeleteIcon /></Button>
                 </Fragment>
-            )
+            )     
         }}
-    ]
+    ]    
+    
 
     const rows=[];
 
@@ -39,12 +45,39 @@ const ProductList = () => {
         rows.push({id:product._id,name:product.name,stock:product.stock,price:product.price}) 
     })
 
+    // const rows = products && Array.isArray(products) ? products.map(product => ({
+    //     id: product._id,
+    //     name: product.name,
+    //     stock: product.stock,
+    //     price: product.price
+    // })) : [];
+
+
+    
+    useEffect(() => {
+        if(error){   
+            alert.error(error);
+            dispatch(clearErrors());  
+           }
+        dispatch(getAdminProducts());  
+    }, [dispatch,error,alert]);
+        
+  
+      
   return (
     <Fragment>
         <MetaData title={`ALL PRODUCTS - Admin`} />
+        <div className="dashboard">
+            <Sidebar />
+            <div className="productListContainer">
+                <h1 id="productListHeading">ALL PRODUCTS</h1>
+
+                <DataGrid  columns={columns} rows={rows} pageSize={10} disableSelectionOnClick  className="productListTable"/>
+            </div>
+        </div>
        
-    </Fragment>
+    </Fragment>    
   )
 }
 
-export default ProductList
+export default ProductsList
