@@ -16,12 +16,13 @@ import Sidebar from './Sidebar.jsx';
 const ProductsList = () => {     
     const dispatch=useDispatch();
     const alert=useAlert();
-    const {error,products}=useSelector((state)=>state.adminProducts)
+    const {error,loading,products}=useSelector((state)=>state.adminProducts)
 
        
 
 
-
+     console.log(products);
+     
 
     const columns=[
         {field:"id",headerName:"Product ID",minWidth:200,flex:0.5},
@@ -34,6 +35,7 @@ const ProductsList = () => {
                     <Link to={`/admin/product/${params.row.id}`}><EditIcon /></Link>
                     <Button ><DeleteIcon /></Button>
                 </Fragment>
+
             )     
         }}
     ]    
@@ -44,13 +46,6 @@ const ProductsList = () => {
     products && products.forEach(product=>{ 
         rows.push({id:product._id,name:product.name,stock:product.stock,price:product.price}) 
     })
-
-    // const rows = products && Array.isArray(products) ? products.map(product => ({
-    //     id: product._id,
-    //     name: product.name,
-    //     stock: product.stock,
-    //     price: product.price
-    // })) : [];
 
 
     
@@ -66,17 +61,22 @@ const ProductsList = () => {
       
   return (
     <Fragment>
-        <MetaData title={`ALL PRODUCTS - Admin`} />
-        <div className="dashboard">
-            <Sidebar />
-            <div className="productListContainer">
-                <h1 id="productListHeading">ALL PRODUCTS</h1>
-
-                <DataGrid  columns={columns} rows={rows} pageSize={10} disableSelectionOnClick  className="productListTable"/>
+        {loading ? <Loader/> :  (
+            <Fragment>
+            <MetaData title={`ALL PRODUCTS - Admin`} />
+            <div className="dashboard">
+                <Sidebar />
+                <div className="productListContainer">
+                    <h1 id="productListHeading">ALL PRODUCTS</h1>
+                   
+                    
+                    <DataGrid  columns={columns} rows={rows} pageSize={10} disableSelectionOnClick  className="productListTable" autoHeight/>
+                </div>
             </div>
-        </div>
-       
-    </Fragment>    
+           
+        </Fragment>  
+        )  }  
+    </Fragment>  
   )
 }
 

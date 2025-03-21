@@ -16,13 +16,13 @@ export const adminProductsReducer = (state = initialAdminState, action) => {
     switch (action.type) {
         case ADMIN_PRODUCT_REQUEST:
             return {
-                ...state,
                 loading: true,
-            };
+                products: [],
+              };
         case ADMIN_PRODUCT_SUCCESS:
             return {
                 loading: false,
-                products: action.payload.products,
+                products: action.payload,
             };
         case ADMIN_PRODUCT_FAIL:
             return {

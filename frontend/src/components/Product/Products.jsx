@@ -56,7 +56,7 @@ const Products = () => {
     let count=filteredProductsCount;
 
     return (
-        <Fragment>
+        <Fragment> 
             {loading ? (
                 <Loader />
             ) : (

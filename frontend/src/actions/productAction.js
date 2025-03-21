@@ -44,13 +44,12 @@ export const getAdminProducts = () => async (dispatch) => {
       payload: data.products,
     });
   } catch (error) {
-    const errorMessage = error.response ? error.response.data.message : error.message;
     dispatch({
       type: ADMIN_PRODUCT_FAIL,
-      payload: errorMessage, 
+      payload:error.response.data.message,  
     });
   }        
-}
+}   
 
 
 
