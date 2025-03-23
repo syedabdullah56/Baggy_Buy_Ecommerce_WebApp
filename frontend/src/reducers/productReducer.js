@@ -27,7 +27,7 @@ export const adminProductsReducer = (state = initialAdminState, action) => {
         case ADMIN_PRODUCT_FAIL:
             return {
                 loading: false,
-                error: action.payload,
+               error: action.payload,
             };
         case CLEAR_ERRORS:
             return {

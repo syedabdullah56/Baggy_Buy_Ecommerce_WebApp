@@ -26,8 +26,8 @@ import MyOrders from './components/Order/MyOrders.jsx'
 import OrderDetails from './components/Order/OrderDetails.jsx'
 import Dashboard from './components/Admin/Dashboard.jsx'
 import ProductsList from './components/Admin/ProductsList.jsx';
-import Payment from './components/Cart/Payment.jsx'
 import { Elements } from '@stripe/react-stripe-js';
+import Payment from './components/Cart/Payment.jsx'
 import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';   
 
