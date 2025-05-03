@@ -1,9 +1,12 @@
-import React from 'react';
+import React,{Fragment,useEffect} from 'react';
 import Sidebar from './Sidebar.jsx';
 import './Dashboard.css';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import { Doughnut, Line } from 'react-chartjs-2';
+import { useSelector,useDispatch } from 'react-redux';
+import {  getAdminProducts } from '../../actions/productAction';
+
 
 // ✅ Import required modules from Chart.js
 import { Chart, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
@@ -12,6 +15,24 @@ import { Chart, CategoryScale, LinearScale, PointElement, LineElement, Title, To
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement);
 
 const Dashboard = () => {
+    const dispatch=useDispatch();
+    const {products}=useSelector((state)=>state.adminProducts)
+    
+
+    let outOfStock = 0;
+    products && 
+        products.forEach((item) => {
+            if (item.Stock === 0) {
+                outOfStock += 1;
+            }
+    })
+
+     useEffect(() => {
+        
+            dispatch(getAdminProducts());  
+        }, [dispatch]);
+
+
     const lineState = {
         labels: ["Initial Amount", "Amount Earned"],
         datasets: [
@@ -30,7 +51,7 @@ const Dashboard = () => {
             {
                 backgroundColor: ["#00A600", "#FFC0CB"],
                 hoverBackgroundColor: ["#36A2EB", "#3e95cd"],
-                data: [2, 10]
+                data: [outOfStock, products.length - outOfStock]
             }
         ],  
     };
@@ -52,7 +73,7 @@ const Dashboard = () => {
                     <div className="dashboardSummaryBox2">
                         <Link to='/admin/products'>
                             <p>Products</p>
-                            <p>50</p>
+                            <p>{products && products.length}</p>
                         </Link>
 
                         <Link to='/admin/orders'>

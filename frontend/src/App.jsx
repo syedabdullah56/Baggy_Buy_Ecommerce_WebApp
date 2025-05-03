@@ -30,6 +30,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import Payment from './components/Cart/Payment.jsx'
 import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';   
+import NewProduct from './components/Admin/NewProduct.jsx';
 
    
 
@@ -38,7 +39,7 @@ function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
   const [stripeApiKey, setStripeApiKey] = useState("");
-
+      
   async function getStripeApiKey() {
     const { data } = await axios.get("/api/v1/stripeapikey");   
 
@@ -50,7 +51,7 @@ function App() {
     getStripeApiKey(); 
   }, []);
 
-
+   
   return (
     <Router>
       <Header />
@@ -88,6 +89,10 @@ function App() {
 
                <Route element={<ProtectedRoute isAdmin={true} />}>
                    <Route path="/admin/products" element={<ProductsList />} />
+               </Route>
+
+               <Route element={<ProtectedRoute isAdmin={true} />}>
+                   <Route path="/admin/product" element={<NewProduct />} />
                </Route>
 
         
