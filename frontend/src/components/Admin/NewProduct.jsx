@@ -51,6 +51,7 @@ const NewProduct = () => {
 
     const createProductSubmitHandler=(e)=>{
         e.preventDefault()
+        // will make this function in the future
     }
     
 
