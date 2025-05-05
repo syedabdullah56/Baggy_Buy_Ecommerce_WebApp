@@ -10,7 +10,7 @@ const cloudinary = require("cloudinary");
 exports.registerUser = catchAsynErrors(async (req, res, next) => {
 
   const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-    folder: "avatars",
+    folder: "avatars", 
     width: 150,
     crop: "scale",
   })
@@ -107,7 +107,7 @@ exports.resetPassword = catchAsynErrors(async (req, res, next) => {
     .update(req.params.token)
     .digest("hex");
 
-  const user = await User.findOne({
+  const user = await User.findOne({ 
     resetPasswordToken,
     resetPasswordExpire: { $gt: Date.now() },
   });

@@ -51,7 +51,34 @@ const NewProduct = () => {
 
     const createProductSubmitHandler=(e)=>{
         e.preventDefault()
-        // will make this function in the future
+
+        const myForm=new FormData();
+        myForm.set("name",name);
+        myForm.set("price",price);
+        myForm.set("description",description);
+        myForm.set("category",category);
+        myForm.set("stock",stock);
+        images.forEach((image)=>{
+            myForm.append("images",image);
+        });
+        dispatch(createProduct(myForm));
+    }
+
+    const createProductImagesChange=(e)=>{
+        const files=Array.from(e.target.files);
+        setImages([]);
+        setImagesPreview([]);
+        files.forEach((file)=>{
+            const reader=new FileReader();
+            reader.onload=()=>{
+                if(reader.readyState===2){
+                    setImagesPreview((oldArray)=>[...oldArray,reader.result]);
+                    setImages((oldArray)=>[...oldArray,reader.result]);
+                }
+            };
+            reader.readAsDataURL(file);
+        });
+       
     }
     
 
@@ -132,8 +159,8 @@ const NewProduct = () => {
                 type='file'
                 name='avatar'
                 accept='image/*'
-                // onChange={createProductImagesChange}
-                // multiple
+                onChange={createProductImagesChange}
+                multiple
                 />
             </div>
 

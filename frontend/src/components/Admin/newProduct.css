@@ -74,13 +74,13 @@
     background-color: rgb(235, 235, 235);
   }
   
-  #createProductFormImage {
+  .createProductFormImage {
     width: 100%;
     overflow: auto;
   }
   
-  #createProductFormImage > img {
-    width: 3vmax;
+  .createProductFormImage > img {
+    width: 3vmax;   
     margin: 0 0.5vmax;
   }
   #createProductBtn {
