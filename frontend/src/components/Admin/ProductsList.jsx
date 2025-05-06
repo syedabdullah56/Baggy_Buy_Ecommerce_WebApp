@@ -2,7 +2,8 @@ import React,{Fragment,useEffect} from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import './productList.css'
 import {useSelector,useDispatch} from 'react-redux'
-import { clearErrors, getAdminProducts } from '../../actions/productAction';
+import { clearErrors, getAdminProducts,deleteProduct } from '../../actions/productAction';
+import { DELETE_PRODUCT_RESET } from '../../constants/productConstants';
 import {Link} from 'react-router-dom'
 import Loader from '../layout/Loader/Loader'
 import { useNavigate } from 'react-router-dom';
@@ -14,12 +15,16 @@ import EditIcon from '@mui/icons-material/Edit';
 import Sidebar from './Sidebar.jsx';
    
 const ProductsList = () => {     
+    const navigate=useNavigate();
     const dispatch=useDispatch();
     const alert=useAlert();
     const {error,loading,products}=useSelector((state)=>state.adminProducts)
+    const {error:deleteError,isDeleted}=useSelector((state)=>state.Product)
 
        
-
+    const deleteProductHandler=(id)=>{
+        dispatch(deleteProduct(id));
+    }
 
      console.log(products);
      
@@ -33,7 +38,7 @@ const ProductsList = () => {
             return(
                 <Fragment>
                     <Link to={`/admin/product/${params.row.id}`}><EditIcon /></Link>
-                    <Button ><DeleteIcon /></Button>
+                    <Button onClick={()=>deleteProductHandler(params.row.id)}><DeleteIcon /></Button>
                 </Fragment>
 
             )     
@@ -54,8 +59,19 @@ const ProductsList = () => {
             alert.error(error);
             dispatch(clearErrors());  
            }
+
+        if(deleteError){   
+            alert.error(deleteError);
+            dispatch(clearErrors());  
+           }
+
+        if(isDeleted){
+            alert.success("Product Deleted Successfully");
+            navigate("/admin/dashboard");
+            dispatch({type:DELETE_PRODUCT_RESET});
+        }
         dispatch(getAdminProducts());  
-    }, [dispatch,error,alert]);
+    }, [dispatch,error,alert,deleteError,navigate,isDeleted]);
         
   
        
@@ -65,12 +81,12 @@ const ProductsList = () => {
             <Fragment>
             <MetaData title={`ALL PRODUCTS - Admin`} />
             <div className="dashboard">
-                <Sidebar />
+                <Sidebar />    
                 <div className="productListContainer">
                     <h1 id="productListHeading">ALL PRODUCTS</h1>
                    
                     
-                    <DataGrid  columns={columns} rows={rows} pageSize={10} disableSelectionOnClick  className="productListTable" autoHeight/>
+                    <DataGrid  columns={columns} rows={rows} pageSize={100} disableSelectionOnClick  className="productListTable" autoHeight/>
                 </div>
             </div>
            
