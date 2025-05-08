@@ -75,6 +75,7 @@ export const productReducer = (state=initialState, action) => {
 export const ProductReducer = (state={}, action) => {
     switch (action.type) {
         case DELETE_PRODUCT_REQUEST:
+        case UPDATE_PRODUCT_REQUEST:
             return {
                 ...state,
                 loading: true,
@@ -83,19 +84,31 @@ export const ProductReducer = (state={}, action) => {
             return {
                 ...state,
                 loading: false,
-                isDeleted: action.payload,
+                isUpdated: action.payload,
+            };
+        case UPDATE_PRODUCT_SUCCESS:
+                return {
+                    ...state,
+                    loading: false,
+                    isDeleted: action.payload,
             };
         case DELETE_PRODUCT_FAIL:
+        case UPDATE_PRODUCT_FAIL:
             return {
                 ...state,
                 loading: false,
                 error: action.payload,
             };
+        case UPDATE_PRODUCT_RESET:
+            return {
+                ...state, 
+                isUpdated: false,
+                };
         case DELETE_PRODUCT_RESET:
             return {
                 ...state, 
-                success: false,
-                };
+                isDeleted: false,
+                 };
 
 
         case CLEAR_ERRORS:
