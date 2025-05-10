@@ -61,7 +61,7 @@ export const createProduct = (id,productData) => async (dispatch) => {
 
 
 // Update Product
-export const updateProduct = (productData) => async (dispatch) => {
+export const updateProduct = (id,productData) => async (dispatch) => {
   try {
     dispatch({
       type: UPDATE_PRODUCT_REQUEST,
@@ -73,10 +73,10 @@ export const updateProduct = (productData) => async (dispatch) => {
       }, 
     }
 
-    const { data } = await axios.post(`/api/v1/admin/product/new`, productData,config);
+    const { data } = await axios.put(`/api/v1/admin/product/${id}`, productData,config);
     dispatch({
       type: UPDATE_PRODUCT_SUCCESS, 
-      payload: data, 
+      payload: data.success, 
     });
   } catch (error) {
     const errorMessage = error.response ? error.response.data.message : error.message;

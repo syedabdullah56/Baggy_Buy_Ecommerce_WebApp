@@ -31,8 +31,8 @@ import Payment from './components/Cart/Payment.jsx'
 import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';   
 import NewProduct from './components/Admin/NewProduct.jsx';
+import UpdateProduct from './components/Admin/UpdateProduct.jsx';
 
-   
 
 function App() {
   const dispatch = useDispatch();
@@ -93,6 +93,10 @@ function App() {
 
                <Route element={<ProtectedRoute isAdmin={true} />}>
                    <Route path="/admin/product" element={<NewProduct />} />
+               </Route>
+
+               <Route element={<ProtectedRoute isAdmin={true} />}>
+                   <Route path="/admin/product/:id" element={<UpdateProduct />} />
                </Route>
 
         
