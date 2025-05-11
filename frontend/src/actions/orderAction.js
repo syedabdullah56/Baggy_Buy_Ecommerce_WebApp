@@ -1,4 +1,4 @@
-import {CREATE_ORDER_REQUEST,CREATE_ORDER_SUCCESS,CREATE_ORDER_FAIL,CLEAR_ERRORS,MY_ORDER_REQUEST,MY_ORDER_SUCCESS,MY_ORDER_FAIL,ORDER_DETAILS_REQUEST,ORDER_DETAILS_SUCCESS,ORDER_DETAILS_FAIL} from "../constants/orderConstants"
+import {CREATE_ORDER_REQUEST,CREATE_ORDER_SUCCESS,CREATE_ORDER_FAIL,CLEAR_ERRORS,MY_ORDER_REQUEST,MY_ORDER_SUCCESS,MY_ORDER_FAIL,ORDER_DETAILS_REQUEST,ORDER_DETAILS_SUCCESS,ORDER_DETAILS_FAIL,ALL_ORDERS_REQUEST,ALL_ORDERS_SUCCESS,ALL_ORDERS_FAIL,UPDATE_ORDER_REQUEST,UPDATE_ORDER_SUCCESS,UPDATE_ORDER_FAIL,UPDATE_ORDER_RESET,DELETE_ORDER_REQUEST,DELETE_ORDER_SUCCESS,DELETE_ORDER_FAIL,DELETE_ORDER_RESET} from "../constants/orderConstants"
 import axios from "axios"
 
 //Create Order
@@ -11,7 +11,7 @@ export const createOrder=(order)=>async(dispatch,getState)=>{
         const {data}=await axios.post("/api/v1/order/new",order,config);
         dispatch({type:CREATE_ORDER_SUCCESS,payload:data});
     }catch(error){
-        dispatch({
+        dispatch({ 
             type:CREATE_ORDER_FAIL,
             payload:error.response.data.message
         })
