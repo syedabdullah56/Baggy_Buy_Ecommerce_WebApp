@@ -7,7 +7,7 @@ import { DELETE_PRODUCT_RESET } from '../../constants/productConstants';
 import {Link} from 'react-router-dom'
 import Loader from '../layout/Loader/Loader'
 import { useNavigate } from 'react-router-dom';
-import { useAlert } from 'react-alert';
+import { useAlert } from 'react-alert'; 
 import { Button } from '@mui/material';
 import MetaData from '../layout/MetaData';
 import DeleteIcon from '@mui/icons-material/Delete';
