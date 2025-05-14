@@ -69,7 +69,7 @@ const OrderList = () => {
             alert.error(deleteError);
             dispatch(clearErrors());  
            }
-
+              //Checking Product is deleted or not
         if(isDeleted){
             alert.success("Product Deleted Successfully");
             navigate("/admin/dashboard");
