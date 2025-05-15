@@ -98,7 +98,7 @@ export const orderReducer=(state={},action)=>{
                 loading:false, 
                 isUpdated:action.payload 
             }
-        case DELETE_ORDER_REQUEST:
+        case DELETE_ORDER_SUCCESS:
             return{
                 ...state,
                 loading:false,

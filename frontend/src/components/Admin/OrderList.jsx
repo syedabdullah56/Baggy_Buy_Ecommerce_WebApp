@@ -14,6 +14,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import Sidebar from './Sidebar.jsx';
 import { deleteOrder, getAllOrders } from '../../actions/orderAction.js';
+import { DELETE_ORDER_RESET } from '../../constants/orderConstants.js';
 import { itIT } from '@mui/material/locale';
    
 const OrderList = () => {     
@@ -21,17 +22,35 @@ const OrderList = () => {
     const dispatch=useDispatch();
     const alert=useAlert();
     const {error,orders}=useSelector((state)=>state.allOrders)
-    const {error:deleteError,isDeleted}=useSelector((state)=>state.Product)
-    const {loading}=useSelector((state)=>state.order)
+    const {error:deleteError,isDeleted,loading}=useSelector((state)=>state.order)
     
        
     const deleteOrderHandler=(id)=>{
         dispatch(deleteOrder(id));
     }
 
-     console.log(orders);
      
 
+    useEffect(() => {
+        if(error){   
+            alert.error(error);
+            dispatch(clearErrors());  
+        }
+
+        if(deleteError){   
+            alert.error(deleteError);
+            dispatch(clearErrors());  
+        }
+
+        if(isDeleted){
+            alert.success("Order Deleted Successfully");
+            dispatch({type:DELETE_ORDER_RESET});
+            navigate("/admin/dashboard");
+        }
+
+        dispatch(getAllOrders());  
+    }, [dispatch,error,alert,deleteError,navigate,isDeleted]);
+    
     const columns=[
       {field:"id",headerName:"Order ID",minWidth:300,flex:1},
       {field:"status",headerName:"Status",minWidth:150,flex:0.5,cellClassName:(params)=>{
@@ -71,9 +90,9 @@ const OrderList = () => {
            }
               //Checking Product is deleted or not
         if(isDeleted){
-            alert.success("Product Deleted Successfully");
+            alert.success("Order Deleted Successfully");
             navigate("/admin/dashboard");
-            dispatch({type:DELETE_PRODUCT_RESET});
+            dispatch({type:DELETE_ORDER_RESET});
         }
         // dispatching to get all orders for admin
         dispatch(getAllOrders());  
