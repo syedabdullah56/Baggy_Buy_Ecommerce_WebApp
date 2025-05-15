@@ -75,6 +75,7 @@ const OrderList = () => {
             navigate("/admin/dashboard");
             dispatch({type:DELETE_PRODUCT_RESET});
         }
+        // dispatching to get all orders for admin
         dispatch(getAllOrders());  
     }, [dispatch,error,alert,deleteError,navigate,isDeleted]);
         
