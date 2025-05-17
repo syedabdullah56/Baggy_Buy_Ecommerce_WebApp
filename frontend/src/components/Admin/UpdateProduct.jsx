@@ -31,7 +31,7 @@ const UpdateProduct = () => {
     const [images, setImages] = useState([]);
     const [oldImages, setOldImages] = useState([]);
     const [imagesPreview, setImagesPreview] = useState([]);
-  
+   
     const categories = [
         "Laptop",
         "Footwear",

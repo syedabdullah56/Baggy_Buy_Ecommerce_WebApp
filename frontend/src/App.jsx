@@ -33,6 +33,8 @@ import axios from 'axios';
 import NewProduct from './components/Admin/NewProduct.jsx';
 import UpdateProduct from './components/Admin/UpdateProduct.jsx';
 import OrderList from './components/Admin/OrderList.jsx';
+import ProcessOrder from './components/Admin/ProcessOrder.jsx';
+import UsersList from './components/Admin/UsersList.jsx';
 
 
 function App() {
@@ -102,6 +104,14 @@ function App() {
 
                <Route element={<ProtectedRoute isAdmin={true} />}>
                    <Route path="/admin/orders" element={<OrderList />} />
+               </Route>
+
+                <Route element={<ProtectedRoute isAdmin={true} />}>
+                   <Route path="/admin/order/:id" element={<ProcessOrder />} />
+               </Route>
+
+               <Route element={<ProtectedRoute isAdmin={true} />}>
+                   <Route path="/admin/orders" element={<UsersList />} />
                </Route>
 
         
