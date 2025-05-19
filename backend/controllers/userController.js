@@ -233,7 +233,7 @@ exports.getSingleUserDetails = catchAsynErrors(async (req, res, next) => {
   });
 });
 
-//Update User Role--Admin
+// Update User Role -- Admin
 exports.updateUserRole = catchAsynErrors(async (req, res, next) => {
   const newUserData = {
     name: req.body.name,
@@ -241,16 +241,22 @@ exports.updateUserRole = catchAsynErrors(async (req, res, next) => {
     role: req.body.role,
   };
 
-  const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+  const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
     new: true,
     runValidators: true,
     useFindAndModify: false,
   });
 
+  if (!user) {
+    return next(new ErrorHandler("User not found", 404));
+  }
+
   res.status(200).json({
     success: true,
+    message: "User updated successfully",
   });
 });
+
  
 
 // Delete User --Admin

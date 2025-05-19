@@ -11,6 +11,7 @@ import {  getAdminProducts } from '../../actions/productAction';
 // ✅ Import required modules from Chart.js
 import { Chart, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 import { getAllOrders } from '../../actions/orderAction.js';
+import { getAllUsers } from '../../actions/userAction.js';
 
 // ✅ Register required modules
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement);
@@ -19,6 +20,7 @@ const Dashboard = () => {
     const dispatch=useDispatch();
     const {products}=useSelector((state)=>state.adminProducts)
     const {orders}=useSelector((state)=>state.allOrders)
+    const {users}=useSelector((state)=>state.allUsers)
     
 
     let outOfStock = 0;
@@ -33,6 +35,7 @@ const Dashboard = () => {
         
             dispatch(getAdminProducts());  
             dispatch(getAllOrders())
+            dispatch(getAllUsers())
         }, [dispatch]);
 
 
@@ -80,13 +83,13 @@ const Dashboard = () => {
                         </Link>
 
                         <Link to='/admin/orders'>
-                            <p>Orders</p>
+                            <p>Orders</p> 
                             <p>{orders && orders.length}</p>
                         </Link>
 
                         <Link to='/admin/users'>
                             <p>Users</p>
-                            <p>2</p>   
+                            <p>{users && users.length}</p>   
                         </Link>
                     </div>
                 </div>

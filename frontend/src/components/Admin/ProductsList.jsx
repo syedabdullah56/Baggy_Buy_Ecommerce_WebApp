@@ -26,7 +26,7 @@ const ProductsList = () => {
         dispatch(deleteProduct(id));
     }
 
-     console.log(products);
+     console.log(products); 
      
 
     const columns=[

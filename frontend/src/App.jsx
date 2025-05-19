@@ -35,6 +35,7 @@ import UpdateProduct from './components/Admin/UpdateProduct.jsx';
 import OrderList from './components/Admin/OrderList.jsx';
 import ProcessOrder from './components/Admin/ProcessOrder.jsx';
 import UsersList from './components/Admin/UsersList.jsx';
+import UpdateUser from './components/Admin/UpdateUser.jsx';
 
 
 function App() {
@@ -111,7 +112,11 @@ function App() {
                </Route>
 
                <Route element={<ProtectedRoute isAdmin={true} />}>
-                   <Route path="/admin/orders" element={<UsersList />} />
+                   <Route path="/admin/users" element={<UsersList />} />
+               </Route>
+
+               <Route element={<ProtectedRoute isAdmin={true} />}>
+                   <Route path="/admin/user/:id" element={<UpdateUser />} />
                </Route>
 
         
