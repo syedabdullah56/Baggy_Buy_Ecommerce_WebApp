@@ -40,6 +40,7 @@ import UpdateUser from './components/Admin/UpdateUser.jsx';
 
 function App() {
   const dispatch = useDispatch();
+
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
   const [stripeApiKey, setStripeApiKey] = useState("");
@@ -86,7 +87,8 @@ function App() {
               <Route path="/orders" element={<MyOrders/>} />
               <Route path="/order/confirm" element={<ConfirmOrder />} />
               <Route path="/order/:id" element={<OrderDetails/>} />
-
+ 
+              {/* Routes For Admin */}
               <Route element={<ProtectedRoute isAdmin={true} />}>
                    <Route path="/admin/dashboard" element={<Dashboard />} />
                </Route>
