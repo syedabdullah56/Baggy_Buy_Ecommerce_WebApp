@@ -92,7 +92,7 @@ function App() {
               <Route element={<ProtectedRoute isAdmin={true} />}>
                    <Route path="/admin/dashboard" element={<Dashboard />} />
                </Route>
-
+              {/* Route For Product List */}
                <Route element={<ProtectedRoute isAdmin={true} />}>
                    <Route path="/admin/products" element={<ProductsList />} />
                </Route>
