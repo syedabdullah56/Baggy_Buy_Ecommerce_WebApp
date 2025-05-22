@@ -96,7 +96,8 @@ function App() {
                <Route element={<ProtectedRoute isAdmin={true} />}>
                    <Route path="/admin/products" element={<ProductsList />} />
                </Route>
-
+               
+               {/* Route For Creating Product */}
                <Route element={<ProtectedRoute isAdmin={true} />}>
                    <Route path="/admin/product" element={<NewProduct />} />
                </Route>
