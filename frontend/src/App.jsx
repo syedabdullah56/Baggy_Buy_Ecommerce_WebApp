@@ -36,6 +36,7 @@ import OrderList from './components/Admin/OrderList.jsx';
 import ProcessOrder from './components/Admin/ProcessOrder.jsx';
 import UsersList from './components/Admin/UsersList.jsx';
 import UpdateUser from './components/Admin/UpdateUser.jsx';
+import ProductReviews from './components/Admin/ProductReviews.jsx';
 
 
 function App() {
@@ -120,6 +121,10 @@ function App() {
 
                <Route element={<ProtectedRoute isAdmin={true} />}>
                    <Route path="/admin/user/:id" element={<UpdateUser />} />
+               </Route>
+
+               <Route element={<ProtectedRoute isAdmin={true} />}>
+                   <Route path="/admin/reviews" element={<ProductReviews />} />
                </Route>
 
         

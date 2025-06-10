@@ -51,7 +51,7 @@ const OrderList = () => {
         dispatch(getAllOrders());  
     }, [dispatch,error,alert,deleteError,navigate,isDeleted]);
     
-    const columns=[
+    const columns=[ 
       {field:"id",headerName:"Order ID",minWidth:300,flex:1},
       {field:"status",headerName:"Status",minWidth:150,flex:0.5,cellClassName:(params)=>{
           return params.row.status==="Delivered" ? "greenColor" : "redColor";
