@@ -20,7 +20,7 @@ const Header = () => {
           &times;
         </button>
         <div className="overlay-content">
-          <img src={BaggyBuyLogo} alt="Baggy Buy Logo" />
+          <img src={BaggyBuyLogo} alt="Baggy Buy Logo" className='logo'/>
 
           <a href="/">Home</a>
           <a href="/products">Products</a>

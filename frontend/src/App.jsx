@@ -1,6 +1,9 @@
 import './App.css';
 import Header from "./components/layout/Header/Header.jsx";
 import Footer from "./components/layout/Footer/Footer.jsx";
+import NotFound from "./components/layout/NotFound/NotFound.jsx";
+import Contact from "./components/layout/Contact/Contact.jsx";
+import About from "./components/layout/About/About.jsx";
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Home from "./components/Home/Home.jsx";
 import ProductDetails from "./components/Product/ProductDetails.jsx";
@@ -13,9 +16,9 @@ import { loadUser } from './actions/userAction.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import UserOptions from './components/layout/Header/UserOptions.jsx';
-import ProtectedRoute from './components/Route/ProtectedRoute.jsx';
+import ProtectedRoute from './components/Route/ProtectedRoute.jsx';   
 import UpdateProfile from './components/User/UpdateProfile.jsx';
-import UpdatePassword from './components/User/UpdatePassword.jsx';
+import UpdatePassword from './components/User/UpdatePassword.jsx';    
 import ForgotPassword from './components/User/ForgotPassword.jsx'
 import ResetPassword from './components/User/ResetPassword.jsx'
 import Cart from './components/Cart/Cart.jsx'; 
@@ -57,10 +60,12 @@ function App() {
     getStripeApiKey(); 
   }, []);
 
+  // window.addEventListener("contextmenu", (e) => e.preventDefault()); // Disable right click context menu
+
    
   return (
     <Router>
-      <Header />
+      <Header />   
       {isAuthenticated && <UserOptions user={user} />}
 
       {/* Wrap Routes with Elements outside */}
@@ -68,6 +73,8 @@ function App() {
         <Elements stripe={loadStripe(stripeApiKey)}>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/products" element={<Products />} />
             <Route path="/products/:keyword" element={<Products />} />
@@ -131,6 +138,10 @@ function App() {
 
 
             </Route>
+
+               {/* NotFound Route */}
+            <Route path="*" element={<NotFound />} />
+
           </Routes>
         </Elements>
       )}

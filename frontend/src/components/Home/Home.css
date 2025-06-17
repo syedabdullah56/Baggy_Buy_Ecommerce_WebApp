@@ -1,4 +1,4 @@
-.banner{
+/* /* .banner{
     background-image: linear-gradient(to right,#635dc0,#3027ae);
     height:100vmin;
     display: flex;
@@ -7,7 +7,29 @@
     align-items: center;
     justify-content: center;
     color:white;
+} */
+
+
+
+.banner {
+  background-image: url("/bg2.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed; 
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  color: white;
+  padding: 2rem; 
+  box-sizing: border-box;
 }
+
 
 .banner >h1{
     margin:5vmax;
@@ -138,4 +160,13 @@
         font:300 1vmax "Roboto";
 
     }
-}
+
+    .banner::after {
+         clip-path: none;
+        height: 0;
+        background-color: transparent;
+  }
+
+
+
+} 
