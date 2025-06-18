@@ -12,7 +12,7 @@ const userSchema=new mongoose.Schema({
         minLength:[4,"Name should have 4 characters"],
     },
     email:{
-        type:String,
+        type:String,  
         required:[true,"Please enter your email"],
         unique:true,
         validate:[validator.isEmail,"Please enter valid email"],
