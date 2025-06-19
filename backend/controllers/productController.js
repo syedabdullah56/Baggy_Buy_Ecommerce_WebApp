@@ -7,87 +7,42 @@ const cloudinary=require("cloudinary")
     
 // Create Product--Admin
 exports.createProduct = catchAsynErrors(async (req, res, next) => {
-  let images = [];
 
-  // ✅ Handle string (1 image) or array (multiple images)
-  if (typeof req.body.images === "string") {
-    images.push(req.body.images);
-  } else if (Array.isArray(req.body.images)) {
-    images = req.body.images;
-  } else {
-    return res.status(400).json({
-      success: false,
-      message: "Images are required",
+    let images = [];
+    if(typeof (req.body.images)==="string"){
+        images.push(req.body.images);
+    }else{
+       images=req.body.images;
+
+    }
+
+    const imagesLink=[];
+    for(let i=0;i <images.length;i++){
+        const result=await cloudinary.v2.uploader.upload(images[i],{
+            folder:"products",
+
+        });
+        imagesLink.push({
+            public_id:result.public_id,   
+            url:result.secure_url,
+        });
+    }
+    req.body.images=imagesLink;
+
+
+    // To get the name and id of user who created the product,extra functionality 
+    req.body.user = req.user.id;
+    const user = await User.findById(req.user.id);
+    req.body.createdBy = user.name; // Assuming the user model has a 'name' field
+
+
+    const product = await Product.create(req.body);
+
+    res.status(201).json({
+        success: true,
+        product,
     });
-  }
-
-  const imagesLink = [];
-
-  for (let i = 0; i < images.length; i++) {
-    const result = await cloudinary.v2.uploader.upload(images[i], {
-      folder: "products",
-    });
-
-    imagesLink.push({
-      public_id: result.public_id,
-      url: result.secure_url,
-    });
-  }
-
-  // ✅ Set cloudinary images
-  req.body.images = imagesLink;
-
-  // ✅ Set user ID and creator name
-  req.body.user = req.user.id;
-
-  const user = await User.findById(req.user.id);
-  req.body.createdBy = user?.name || "Unknown";
-
-  // ✅ Create product in DB
-  const product = await Product.create(req.body);
-
-  res.status(201).json({
-    success: true,
-    product,
-  });
 });
-// exports.createProduct = catchAsynErrors(async (req, res, next) => {
-
-//     let images = [];
-//     if(typeof (req.body.images)==="string"){
-//         images.push(req.body.images);
-//     }else{
-//        images=req.body.images;
-
-//     }
-
-//     const imagesLink=[];
-//     for(let i=0;i <images.length;i++){
-//         const result=await cloudinary.v2.uploader.upload(images[i],{
-//             folder:"products",
-
-//         });
-//         imagesLink.push({
-//             public_id:result.public_id,   
-//             url:result.secure_url,
-//         });
-//     }
-//     req.body.images=imagesLink;
-
-
-//     // To get the name and id of user who created the product,extra functionality 
-//     req.body.user = req.user.id;
-//     const user = await User.findById(req.user.id);
-//     req.body.createdBy = user.name; // Assuming the user model has a 'name' field
-
-
-//     const product = await Product.create(req.body);
-
-//     res.status(201).json({
-//         success: true,
-//         product,
-//     });
-// });
 
 
 
