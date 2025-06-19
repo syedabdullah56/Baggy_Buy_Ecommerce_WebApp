@@ -31,11 +31,11 @@ app.use("/api/v1",order);
 app.use("/api/v1",payment);
 
 // Serve static files from the dist directory
-app.use(express.static(path.join(__dirname, '../frontend/dist')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Handle all other routes with index.html (for React Router support)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'));
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 // Error Middleware
