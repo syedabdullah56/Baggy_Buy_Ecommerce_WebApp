@@ -5,6 +5,7 @@ const dotenv=require("dotenv")
 const bodyParser=require("body-parser");
 const fileUpload=require("express-fileupload");
 const app=express();
+const path = require('path');
 
 // Config 
 dotenv.config({path:"backend/config/config.env"})
@@ -28,6 +29,14 @@ app.use("/api/v1",product);
 app.use("/api/v1",user);
 app.use("/api/v1",order);
 app.use("/api/v1",payment);
+
+// Serve static files from the dist directory
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+// Handle all other routes with index.html (for React Router support)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'));
+});
 
 // Error Middleware
 app.use(errorMiddleware);
