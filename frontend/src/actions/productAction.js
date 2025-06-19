@@ -33,7 +33,7 @@ export const getProduct = (keyword="",currentPage=1,price=[0,50000],category,rat
 };
 
 // Create New Product
-export const createProduct = (id,productData) => async (dispatch) => {
+export const createProduct = (productData) => async (dispatch) => {
   try {
     dispatch({
       type: NEW_PRODUCT_REQUEST,
