@@ -13,9 +13,9 @@ dotenv.config({path:"backend/config/config.env"})
   
 
 // Middleware  
-app.use(express.json())  //this middleware is used to parse the bady of incoming request and make it available in req.body
+app.use(express.json({ limit: "10mb" })); //  Increase JSON payload limit
 app.use(cookieParser())  //this middleware is used to parse the cookie from an incoming request and make it available in req.cookies
-app.use(bodyParser.urlencoded({extended:true}))  //this middleware is used to parse the body of incoming request and make it available in req.body
+app.use(bodyParser.urlencoded({extended:true, limit: "10mb"}))  //this middleware is used to parse the body of incoming request and make it available in req.body
 app.use(fileUpload());
   
 // Route Imports
